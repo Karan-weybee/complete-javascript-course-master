@@ -21,24 +21,24 @@ HINT: To check if number A is at least double number B, check for A >= 2 * B. Ap
 GOOD LUCK 😀
 */
 
-const dolphins1 =16;
-const dolphins2 =18;
-const dolphins3 =17;
-const koalas1 =8;
-const koalas2 =8;
-const koalas3 =8;
+const dolphins1 = 16;
+const dolphins2 = 18;
+const dolphins3 = 17;
+const koalas1 = 8;
+const koalas2 = 8;
+const koalas3 = 8;
 
-const avg = (score1,score2,score3) => {
-        const average=(score1+score2+score3)/3;
-        return average;
-    }
+const avg = (score1, score2, score3) => {
+    const average = (score1 + score2 + score3) / 3;
+    return average;
+}
 
-const winner = function (dolphin_avg,koalas_avg){
- 
-    if(dolphin_avg>=2*koalas_avg) {
+const winner = function (dolphin_avg, koalas_avg) {
+
+    if (dolphin_avg >= 2 * koalas_avg) {
         console.log(`Dolphin win ${dolphin_avg} vs ${koalas_avg}`);
     }
-    else if(dolphin_avg*2 <= koalas_avg) {
+    else if (dolphin_avg * 2 <= koalas_avg) {
         console.log(`Koalas win ${koalas_avg} vs ${dolphin_avg}`);
     }
     else {
@@ -46,7 +46,7 @@ const winner = function (dolphin_avg,koalas_avg){
     }
 }
 
-winner(avg(dolphins1,dolphins2,dolphins3),avg(koalas1,koalas2,koalas3));
+winner(avg(dolphins1, dolphins2, dolphins3), avg(koalas1, koalas2, koalas3));
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -66,20 +66,20 @@ HINT: Remember that an array needs a value in each position, and that value can 
 GOOD LUCK 😀
 */
 
-const values = [125,555,44];
+const values = [125, 555, 44];
 const calcTip = (value) => {
-    if(value > 50 && value < 300){
-        return value*0.15;
+    if (value > 50 && value < 300) {
+        return value * 0.15;
     }
     else {
-        return value*0.20;
+        return value * 0.20;
     }
 }
 
-const ans=[calcTip(values[0]),calcTip(values[1]),calcTip(values[2])];
-console.log(`total value is ${values[0]} and tip is ${ans[0]} so total value is ${values[0]+ans[0]}`);
+const ans = [calcTip(values[0]), calcTip(values[1]), calcTip(values[2])];
+console.log(`total value is ${values[0]} and tip is ${ans[0]} so total value is ${values[0] + ans[0]}`);
 
-const total = [values[0]+ans[0],values[1]+ans[1],values[2]+ans[2]];
+const total = [values[0] + ans[0], values[1] + ans[1], values[2] + ans[2]];
 console.log(total);
 
 ///////////////////////////////////////
@@ -163,7 +163,288 @@ GOOD LUCK 😀
 // { 
 //     tips.push(calcTip(bill[i]));
 //     totals.push(tips[i]+bill[i]);  
-   
+
 // }
 // console.log(bill,tips,totals);
 
+///////////////////////////////////////////////
+/////////////////practice /////////////////////
+/*
+LECTURE: Functions
+1. Write a function called 'describeCountry' which takes three parameters: 
+'country', 'population' and 'capitalCity'. Based on this input, the 
+function returns a string with this format: 'Finland has 6 million people and its 
+capital city is Helsinki'
+2. Call this function 3 times, with input data for 3 different countries. Store the 
+returned values in 3 different variables, and log them to the console */
+
+function describeCountry(country, population, capitalCity) {
+    return `${country} has ${population} million people and its capital city is ${capitalCity} `;
+}
+console.log(describeCountry("india", 125, "delhi"));
+
+console.log(describeCountry("usa", 125, "Washington, D.C"));
+
+console.log(describeCountry("pakistan", 125, "islamabad"));
+
+/*
+LECTURE: Function Declarations vs. Expressions
+1. The world population is 7900 million people. Create a function declaration
+called 'percentageOfWorld1' which receives a 'population' value, and
+returns the percentage of the world population that the given population 
+represents. For example, China has 1441 million people, so it's about 18.2% of 
+the world population
+2. To calculate the percentage, divide the given 'population' value by 7900 
+and then multiply by 100
+3. Call 'percentageOfWorld1' for 3 populations of countries of your choice, 
+store the results into variables, and log them to the console
+4. Create a function expression which does the exact same thing, called 
+'percentageOfWorld2', and also call it with 3 country populations (can be 
+the same populations)
+*/
+
+world_population = 7900;
+population_country = 125;
+country_name = "india";
+function persontageOfWorld1(world, country) {
+    return country * 100 / world;
+}
+const persontageOf = persontageOfWorld1(world_population, population_country);
+console.log(`${country_name} has ${population_country} million people , so it's about ${persontageOf} % of the world population`);
+
+
+const persontageOfWorld2 = persontageOfWorld1(world_population, 30);
+console.log(`india has ${30} million people , so it's about ${persontageOfWorld1} % of the world population`);
+
+/*
+LECTURE: Arrow Functions
+1. Recreate the last assignment, but this time create an arrow function called 
+'percentageOfWorld3'
+*/
+
+world_population1 = 7900;
+population_country1 = 125;
+country_name1 = "india";
+const persontageOfWorld3 = (world, country) => {
+    return country * 100 / world;
+}
+
+const personta = persontageOfWorld3(world_population1, population_country1);
+console.log(`${country_name1} has ${population_country1} million people , so it's about ${personta} % of the world population`);
+
+/*
+LECTURE: Functions Calling Other Functions
+1. Create a function called 'describePopulation'. Use the function type you 
+like the most. This function takes in two arguments: 'country' and 
+'population', and returns a string like this: 'China has 1441 million people, 
+which is about 18.2% of the world.'
+2. To calculate the percentage, 'describePopulation' call the 
+'percentageOfWorld1' you created earlier
+3. Call 'describePopulation' with data for 3 countries of your choice
+*/
+
+function describePopulation(country_name, population) {
+    return `${country_name} has ${population} million people whitch is about ${persontageOfWorld1(7900, population)} % of the world`;
+
+}
+console.log(describePopulation("india", 90));
+console.log(describePopulation("pakistan", 45));
+console.log(describePopulation("usa", 70));
+
+/*
+LECTURE: Introduction to Arrays
+1. Create an array containing 4 population values of 4 countries of your choice. 
+You may use the values you have been using previously. Store this array into a 
+variable called 'populations'
+2. Log to the console whether the array has 4 elements or not (true or false)
+3. Create an array called 'percentages' containing the percentages of the 
+world population for these 4 population values. Use the function 
+'percentageOfWorld1' that you created earlier to compute the 4 
+percentage values */
+
+const populations = [78, 78, 78, 56];
+const four = populations.length == 4 ? true : false;
+console.log(four);
+for (let i = 0; i < populations.length; i++) {
+    console.log(persontageOfWorld1(7900, populations[i]));
+}
+
+/*
+LECTURE: Basic Array Operations (Methods)
+1. Create an array containing all the neighbouring countries of a country of your 
+choice. Choose a country which has at least 2 or 3 neighbours. Store the array 
+into a variable called 'neighbours'
+2. At some point, a new country called 'Utopia' is created in the neighbourhood of 
+your selected country. So add it to the end of the 'neighbours' array
+3. Unfortunately, after some time, the new country is dissolved. So remove it from 
+the end of the array
+4. If the 'neighbours' array does not include the country ‘Germany’, log to the 
+console: 'Probably not a central European country :D'
+5. Change the name of one of your neighbouring countries. To do that, find the 
+index of the country in the 'neighbours' array, and then use that index to 
+change the array at that index position. For example, you can search for
+'Sweden' in the array, and then replace it with 'Republic of Sweden'
+*/
+
+const neighbours = ["india", "pakistan", "china", "usa"];
+console.log(neighbours);
+neighbours.push("russia");
+console.log(neighbours);
+neighbours.pop();
+for (let i = 0; i < neighbours.length; i++) {
+    if (neighbours[i] == "usa") {
+        neighbours[i] = "russia";
+    }
+}
+console.log(neighbours);
+
+/*
+LECTURE: Introduction to Objects
+1. Create an object called 'myCountry' for a country of your choice, containing 
+properties 'country', 'capital', 'language', 'population' and 
+'neighbours' (an array like we used in previous assignments)
+*/
+const myCountry = {
+    country: "india",
+    capital: "delhi",
+    language: "hindi",
+    population: 125,
+    neighbours
+}
+
+/*
+LECTURE: Dot vs. Bracket Notation
+1. Using the object from the previous assignment, log a string like this to the 
+console: 'Finland has 6 million finnish-speaking people, 3 neighbouring countries 
+and a capital called Helsinki.'
+2. Increase the country's population by two million using dot notation, and then 
+decrease it by two million using brackets notation.
+ */
+
+console.log(`${myCountry.country} has ${myCountry.population} ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}`);
+myCountry.population = myCountry.population + 2;
+console.log(myCountry.population)
+myCountry.population = myCountry.population - 2;
+console.log(myCountry.population);
+
+/*
+LECTURE: Object Methods
+1. Add a method called 'describe' to the 'myCountry' object. This method 
+will log a string to the console, similar to the string logged in the previous 
+assignment, but this time using the 'this' keyword.
+2. Call the 'describe' method
+3. Add a method called 'checkIsland' to the 'myCountry' object. This 
+method will set a new property on the object, called 'isIsland'. 
+'isIsland' will be true if there are no neighbouring countries, and false if 
+there are. Use the ternary operator to set the property.
+ */
+
+myCountry.describe = () => {
+    console.log("describe method");
+};
+console.log(myCountry.describe());
+
+myCountry.checkIsland = () => {
+    myCountry.isIsland = myCountry.neighbours.length >= 1 ? false : true;
+
+}
+myCountry.checkIsland();
+console.log(myCountry.isIsland);
+
+/*
+LECTURE: Iteration: The for Loop
+1. There are elections in your country! In a small town, there are only 50 voters. 
+Use a for loop to simulate the 50 people voting, by logging a string like this to 
+the console (for numbers 1 to 50): 'Voter number 1 is currently voting'
+*/
+for (let i = 1; i <= 50; i++) {
+    console.log(`voter number ${i} is currently voting`);
+}
+
+/*
+LECTURE: Looping Arrays, Breaking and Continuing
+1. Let's bring back the 'populations' array from a previous assignment
+2. Use a for loop to compute an array called 'percentages2' containing the 
+percentages of the world population for the 4 population values. Use the 
+function 'percentageOfWorld1' that you created earlier
+3. Confirm that 'percentages2' contains exactly the same values as the 
+'percentages' array that we created manually in the previous assignment, 
+and reflect on how much better this solution is
+*/
+const percentage2 = [];
+for (let i = 0; i < 4; i++) {
+    percentage2.push(persontageOfWorld1(7900, populations[i]));
+
+}
+console.log(percentage2);
+var c=0;
+for (let i = 0; i < 4; i++) {
+    if (populations[i] !== percentage2[i]) {
+    c=2;
+    console.log("all value of population and persontage2 array not same");
+        break;
+    }
+    else {
+
+        countinue;
+    }
+}
+if(!c){
+    
+    console.log("all value of population and persontage2 array is same");
+}
+c=0;
+/*
+LECTURE: Looping Backwards and Loops in Loops
+1. Store this array of arrays into a variable called 'listOfNeighbours'
+[['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 
+'Russia']];
+2. Log only the neighbouring countries to the console, one by one, not the entire 
+arrays. Log a string like 'Neighbour: Canada' for each country
+3. You will need a loop inside a loop for this. This is actually a bit tricky, so don't 
+worry if it's too difficult for you! But you can still try to figure this out anyway
+
+*/
+const listOfNeighbours =
+    [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden',
+        'Russia']];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+    for (let j = 0; j < listOfNeighbours[i].length; j++) {
+        for (let k = j + 1; k < listOfNeighbours[i].length; k++) {
+            console.log(listOfNeighbours[i][j] + " is neighbour" + listOfNeighbours[i][k]);
+        }
+    }
+}
+
+/*
+LECTURE: The while Loop
+1. Recreate the challenge from the lecture 'Looping Arrays, Breaking and Continuing', 
+but this time using a while loop (call the array 'percentages3')
+2. Reflect on what solution you like better for this task: the for loop or the while
+loop?
+*/
+const percentage3 = [];
+let i=0;
+while (i < populations.length) {
+    percentage3.push(persontageOfWorld1(7900, populations[i]));
+    i++;
+}
+console.log(percentage3);
+i=0;
+while (i < populations.length) {
+    if (populations[i] !== percentage3[i]) {
+        console.log("all value of population and persontage3 array is not same");
+       c=2;
+        break;
+    }
+    else {
+       
+        countinue;
+    }
+    
+    i++;
+}
+if(!c){
+    console.log("all value of population and persontage3 array is same");
+}
