@@ -1,31 +1,25 @@
 'use strict';
 
-// console.log(document.querySelector('.message')
-// .textContent
-// );
-// document.querySelector('.message').textContent=
-// 'Correct number !'
-
-// document.querySelector('.number').textContent=14
-// document.querySelector('.score').textContent=15
-
-// document.querySelector('.guess').value=23
-// console.log(document.querySelector('.guess').value);
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
+const displayMessage=function (massage){
+    document.querySelector('.message').textContent=massage;
+}
 const x = function () {
     const guess = Number(document.querySelector('.guess').value);
     console.log(typeof guess)
     if (!guess) {
-        document.querySelector('.message').textContent =
-            '🙄 No number !'
+        // document.querySelector('.message').textContent =
+        //     '🙄 No number !'
+        displayMessage('🙄 No number !');
     }
     else if (guess === secretNumber) {
-        document.querySelector('.message').textContent =
-            'Correct number ! 😃'
+        // document.querySelector('.message').textContent =
+        //     'Correct number ! 😃'
+        displayMessage('Correct number ! 😃');
         document.querySelector('body').style.backgroundColor = '#60b347';
 
         document.querySelector('.number').style.width = '30rem'
@@ -42,8 +36,9 @@ const x = function () {
      
         if (score > 1) {
             let message = guess > secretNumber ? 'Too High! 🚀' : "Too Low! ⏬";
-            document.querySelector('.message').textContent =
-                message
+            // document.querySelector('.message').textContent =
+            //     message
+            displayMessage(message);
             score--;
             document.querySelector('.score').textContent = score;
         }
@@ -53,18 +48,7 @@ const x = function () {
         }
 
     }
-    // else if (guess < secretNumber) {
-    //     if (score > 1) {
-    //         document.querySelector('.message').textContent =
-    //             'Too Low! ⏬'
-    //         score--;
-    //         document.querySelector('.score').textContent = score;
-    //     }
-    //     else {
-    //         document.querySelector('.message').textContent =
-    //             '💥 You lost the game ! '
-    //     }
-    // }
+  
 
 }
 document.querySelector('.check').addEventListener('click', x);
