@@ -120,13 +120,14 @@ const poll = {
     registerNewAnswer: function () {
 
         const num = prompt(`What is your favourite programming language? \n
-        0: JavaScript\n
-        1: Python\n
-        2: Rust\n
-        3: C++`);
+        1: JavaScript\n
+        2: Python\n
+        3: Rust\n
+        4: C++`);
         var num1 = Number(num)
-        if (num1 < this.answers.length && num1 > -1) {
-            this.answers[num1] = this.answers[num1] + 1
+        if (num1 <= this.answers.length && num1 > 0) {
+            this.answers[num1-1] = this.answers[num1-1] + 1
+            console.log(num1)
         }
         displayResults(this.answers);
     }
@@ -170,3 +171,25 @@ function ans(){
 ans()
 console.log(k)
 
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+This is more of a thinking challenge than a coding challenge 🤓
+
+Take the IIFE below and at the end of the function, attach an event listener that changes the color of the selected h1 element ('header') to blue, each time the BODY element is clicked. Do NOT select the h1 element again!
+
+And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
+
+GOOD LUCK 😀
+*/
+
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('h1').addEventListener('click', function () {
+    console.log("i am in iife")
+  });
+})();
