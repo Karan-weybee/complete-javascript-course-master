@@ -40,32 +40,7 @@ const switchPlayer = function () {
     player0El.classList.toggle('player--active');
     player1El.classList.toggle('player--active');
 }
-
-//rolling dice functionality
-btnRoll.addEventListener('click', function () {
-    if (playing) {
-        //1. generating a random dice roll 
-        const dice = Math.trunc(Math.random() * 6) + 1;
-        console.log(dice)
-        // 2. Display dice
-        diceEl.style.display = 'block';
-        diceEl.src = `dice-${dice}.png`;
-        //3. Check for rolled 1 : if true,
-        if (dice !== 1) {
-            //add dice to current score
-            currentScore += dice;
-            document.getElementById(`current--${activePlayer}`).textContent = currentScore;
-        }
-        else {
-            // switch to next player
-            switchPlayer();
-            document.querySelector('#switch').innerHTML=`Player switch because move is  ${dice}. Now Player ${activePlayer+1} can roll the dice`
-            OpenBootstrapPopup1();
-        }
-    }
-})
-
-btnHold.addEventListener('click', function () {
+function holdGame(){
     if (playing) {
         //1 . add current score to active player
         scores[activePlayer] += currentScore;
@@ -73,14 +48,16 @@ btnHold.addEventListener('click', function () {
 
         document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
         // 2. check if player's score >= 100
-        if (scores[activePlayer] >= 100) {
+        if (scores[activePlayer] >= 20) {
             //finish game
             playing = false;
             diceEl.style.display='none';
             document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
             document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
-            document.querySelector('#switch').innerHTML=`Player ${activePlayer+1} have ${Number(scores[activePlayer])} score so player ${activePlayer+1} 🎆🎇 WIN ✨🎉🎀 this Game`
+            document.querySelector('#switch').innerHTML=`Congratulation player ${activePlayer+1} 🎆🎇 WON !! ✨🎉🎀 `
             OpenBootstrapPopup1();
+            btnRoll.style.display='none';
+            btnHold.style.display='none'
 
         }
         else {
@@ -93,10 +70,33 @@ btnHold.addEventListener('click', function () {
 
         //switch to the next player
     }
-})
+}
+btnHold.addEventListener('click',holdGame)
+function rollDice(){
+    if (playing) {
+        //1. generating a random dice roll 
+        const dice = Math.trunc(Math.random() * 6) + 1;
+        console.log(dice)
+        // 2. Display dice
+        diceEl.style.display = 'block';
+        diceEl.src = `dice-${dice}.png`;
+        //3. Check for rolled 1 : if true,
+        if (dice != 1) {
+            //add dice to current score
+            currentScore += dice;
+            document.getElementById(`current--${activePlayer}`).textContent = currentScore;
+        }
+        else {
+            // switch to next player
+            switchPlayer();
+            document.querySelector('#switch').innerHTML=`Player switch because move is  ${dice}. Now Player ${activePlayer+1} can roll the dice`
+            OpenBootstrapPopup1();
+        }
+    }
+}
+btnRoll.addEventListener('click', rollDice)
 
-btnNew.addEventListener('click',function (){
-
+function newGame(){
     scores[0]=0;
     scores[1]=0;
     score0El.textContent=0;
@@ -111,8 +111,10 @@ btnNew.addEventListener('click',function (){
     }
     activePlayer=0;
     document.querySelector(`.player--${activePlayer}`).classList.add('player--active');
+    btnRoll.style.display='block';
+    btnHold.style.display='block'
    
-  
-})
+}
+btnNew.addEventListener('click',newGame)
 
 btnRule.addEventListener('click',OpenBootstrapPopup);

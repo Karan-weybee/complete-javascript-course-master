@@ -81,6 +81,10 @@ h1 {
   top: 2rem;
   left: 2rem;
 }
+.rules {
+ margin-top: 10rem;
+ margin-left: 2rem;
+}
 
 .guess {
   background: none;
