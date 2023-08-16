@@ -1,4 +1,14 @@
 'use strict';
+window.onload = function () {
+    OpenBootstrapPopup();
+};
+function OpenBootstrapPopup() {
+    $("#simpleModal").modal('show');
+}
+
+function OpenBootstrapPopup1() {
+    $("#simpleModal1").modal('show');
+}
 
 // selecting elements 
 const player0El = document.querySelector('.player--0');
@@ -11,6 +21,7 @@ const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const btnRule = document.querySelector('.btn--rule');
 
 //starting condition
 score0El.textContent = 0;
@@ -48,6 +59,8 @@ btnRoll.addEventListener('click', function () {
         else {
             // switch to next player
             switchPlayer();
+            document.querySelector('#switch').innerHTML=`Player switch because move is  ${dice}. Now Player ${activePlayer+1} can roll the dice`
+            OpenBootstrapPopup1();
         }
     }
 })
@@ -66,10 +79,15 @@ btnHold.addEventListener('click', function () {
             diceEl.style.display='none';
             document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
             document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+            document.querySelector('#switch').innerHTML=`Player ${activePlayer+1} have ${Number(scores[activePlayer])} score so player ${activePlayer+1} 🎆🎇 WIN ✨🎉🎀 this Game`
+            OpenBootstrapPopup1();
 
         }
         else {
+            
+            document.querySelector('#switch').innerHTML=`Player switch because player ${activePlayer+1} hold the score and remaining ${100-Number(scores[activePlayer])} score need for win`
             switchPlayer();
+            OpenBootstrapPopup1();
         }
 
 
@@ -88,8 +106,13 @@ btnNew.addEventListener('click',function (){
     current1El.textContent=0;
     currentScore=0;
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--winner');
+    if(activePlayer == 1){
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+    }
     activePlayer=0;
     document.querySelector(`.player--${activePlayer}`).classList.add('player--active');
    
   
 })
+
+btnRule.addEventListener('click',OpenBootstrapPopup);

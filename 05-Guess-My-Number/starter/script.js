@@ -1,6 +1,6 @@
 'use strict';
 
-
+alert("Find the random number using guessing");
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
@@ -12,9 +12,10 @@ const x = function () {
     const guess = Number(document.querySelector('.guess').value);
     console.log(typeof guess)
     if (!guess) {
-        // document.querySelector('.message').textContent =
-        //     '🙄 No number !'
         displayMessage('🙄 No number !');
+    }
+    else if(guess > 20 || guess<=0){
+        displayMessage('Guess number between 0 to 20');
     }
     else if (guess === secretNumber) {
         // document.querySelector('.message').textContent =
@@ -28,6 +29,7 @@ const x = function () {
         if (score > highscore) {
             highscore = score;
             document.querySelector('.highscore').textContent = highscore;
+            alert(`New Highscore Updated ${highscore}`)
         }
         }
 
@@ -53,6 +55,7 @@ const x = function () {
 }
 document.querySelector('.check').addEventListener('click', x);
 const again = function () {
+    alert("New game will Start");
     score = 20;
     secretNumber = Math.trunc(Math.random() * 20) + 1;
     document.querySelector('.number').style.width = '15rem'
