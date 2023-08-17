@@ -48,7 +48,7 @@ function holdGame(){
 
         document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
         // 2. check if player's score >= 100
-        if (scores[activePlayer] >= 20) {
+        if (scores[activePlayer] >= 100) {
             //finish game
             playing = false;
             diceEl.style.display='none';
