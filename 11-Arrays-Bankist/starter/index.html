@@ -19,8 +19,8 @@
     <nav>
       <p class="welcome">Log in to get started</p>
       <img src="logo.png" alt="Logo" class="logo" />
-      <!-- <form class="login"> -->
-        <div>
+      <form class="login" id="myFunction">
+        <!-- <div> -->
         <input
           type="text"
           placeholder="user"
@@ -35,9 +35,9 @@
           class="login__input login__input--pin"
           id="login__input--pin"
         />
-        <button class="login__btn" onclick="myFunction()">&rarr;</button>
-      </div>
-      <!-- </form> -->
+        <button class="login__btn" type="submit">&rarr;</button>
+      <!-- </div> -->
+      </form>
     </nav>
 
     <main class="app">
@@ -82,34 +82,34 @@
       <!-- OPERATION: TRANSFERS -->
       <div class="operation operation--transfer">
         <h2>Transfer money</h2>
-        <!-- <form class="form form--transfer"> -->
-          <div class="form form--transfer">
+        <form class="form form--transfer" id="transfer">
+          <!-- <div class="form form--transfer"> -->
           <input type="text" class="form__input form__input--to" id="form__input--to"/>
           <input type="number" class="form__input form__input--amount" id="form__input--amount" min="1"/>
-          <button class="form__btn form__btn--transfer" onclick="transfer()">&rarr;</button>
+          <button class="form__btn form__btn--transfer" type="submit">&rarr;</button>
           <label class="form__label">Transfer to</label>
           <label class="form__label">Amount</label>
-        </div>
-        <!-- </form> -->
+        <!-- </div> -->
+        </form>
       </div>
 
       <!-- OPERATION: LOAN -->
       <div class="operation operation--loan">
         <h2>Request loan</h2>
-        <!-- <form class="form form--loan"> -->
-          <div class="form form--loan">
+        <form class="form form--loan" id="loan">
+          <!-- <div class="form form--loan"> -->
           <input type="number" class="form__input form__input--loan-amount" id="form__input--loan-amount"/>
-          <button class="form__btn form__btn--loan" onclick="loan()">&rarr;</button>
+          <button class="form__btn form__btn--loan" type="submit">&rarr;</button>
           <label class="form__label form__label--loan">Amount</label>
-        </div>
-        <!-- </form> -->
+        <!-- </div> -->
+        </form>
       </div>
 
       <!-- OPERATION: CLOSE -->
       <div class="operation operation--close">
         <h2>Close account</h2>
-        <!-- <form class="form form--close"> -->
-          <div class="form form--close">
+        <form class="form form--close" id="myClose">
+          <!-- <div class="form form--close"> -->
           <input type="text" class="form__input form__input--user" id="conform_user"/>
           <input
             type="password"
@@ -117,11 +117,11 @@
             class="form__input form__input--pin"
             id="conform_pin"
           />
-          <button class="form__btn form__btn--close" onclick="myClose()">&rarr;</button>
+          <button class="form__btn form__btn--close" type="submit">&rarr;</button>
           <label class="form__label">Confirm user</label>
           <label class="form__label">Confirm PIN</label>
-        </div>
-        <!-- </form> -->
+        <!-- </div> -->
+        </form>
       </div>
 
       <!-- LOGOUT TIMER -->

@@ -196,12 +196,20 @@ function outVal(mov){
   return total1;
 }
 // login credential
-
+var user_name;
+var user_pass;
+document.getElementById('myFunction').addEventListener('submit',function(e){
+  e.preventDefault();
+  user_name=document.getElementById('login__input--user').value;
+  user_pass=document.getElementById('login__input--pin').value;
+  myFunction();
+})
 function myFunction(){
-  var userName=document.getElementById('login__input--user').value;
+  // e.preventDefault();
+  var userName=user_name;
   // console.log(userName)
   
-  var pass=document.getElementById('login__input--pin').value;
+  var pass=user_pass;
   pass=Number(pass);
   // let 
   open1=loginCredential(userName,pass);
@@ -244,7 +252,8 @@ for(let i=0;i<accounts.length;i++){
 }
 
 ///close or remove account 
-function myClose(){
+document.getElementById('myClose').addEventListener('submit',function (e){
+  e.preventDefault();
   var conformName=document.getElementById('conform_user').value;
   var conformPin1=document.getElementById('conform_pin').value;
   var conformPin = Number(conformPin1);
@@ -256,10 +265,11 @@ function myClose(){
   }
  
 }
-
+)
 ///transfer money
 
-function transfer(){
+document.getElementById('transfer').addEventListener('submit',function(e){
+  e.preventDefault();
   var Name=document.getElementById('form__input--to').value;
   var amount1=document.getElementById('form__input--amount').value;
   var amount=Number(amount1);
@@ -271,7 +281,7 @@ function transfer(){
     accounts[check].movements.push(amount)
     myFunction();
   }
-}
+})
 function loginForTransfer(userName){
 
   for(let i=0;i<accounts.length;i++){
@@ -300,7 +310,8 @@ function loginForTransfer(userName){
     }
     return loan*0.1-1;
   }
-  function loan(){
+  document.getElementById('loan').addEventListener('submit',function(e){
+    e.preventDefault();
     // form__input--loan-amount
     var loanAmout1=document.getElementById('form__input--loan-amount').value;
     var loanAmout=Number(loanAmout1);
@@ -310,4 +321,4 @@ function loginForTransfer(userName){
       myFunction()
     }
 
-  }
+  })
