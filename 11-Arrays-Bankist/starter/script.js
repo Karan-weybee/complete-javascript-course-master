@@ -143,9 +143,10 @@ console.log(movementsDescriptions);
 
 
 ///insert in webpage
+var open1=-1;
 const displayMovements = function (movements, sort) {
   containerMovements.innerHTML = '';
-  
+
   document.querySelector('.btn--sort').addEventListener('click',function(){
     var sort1=sort ? false : true;
    displayMovements(account1.movements,sort1);
@@ -168,4 +169,145 @@ const displayMovements = function (movements, sort) {
   });
 };
 
-displayMovements(account1.movements,false)
+function total(mov){
+  var total1 =0;
+  for(let i=0;i<mov.length;i++){
+    total1 =total1+mov[i];
+  }
+  return total1;
+}
+function inVal(mov){
+  var total1 =0;
+  for(let i=0;i<mov.length;i++){
+    if(mov[i] > 0){
+    total1 =total1+mov[i];
+    }
+  }
+  return total1;
+}
+function outVal(mov){
+  var total1 =0;
+  for(let i=0;i<mov.length;i++){
+    if(mov[i] < 0){
+      let val=Math.abs(mov[i])
+    total1 =total1+val;
+    }
+  }
+  return total1;
+}
+// login credential
+
+function myFunction(){
+  var userName=document.getElementById('login__input--user').value;
+  // console.log(userName)
+  
+  var pass=document.getElementById('login__input--pin').value;
+  pass=Number(pass);
+  // let 
+  open1=loginCredential(userName,pass);
+  if(open1 > -1){
+    document.querySelector('main').style.opacity='100%';
+    displayMovements(accounts[open1].movements,false)
+    var total1=total(accounts[open1].movements)
+    var in1=inVal(accounts[open1].movements);
+    var out1=outVal(accounts[open1].movements);
+    var interestAmount=in1*accounts[open1].interestRate/100;
+    document.getElementById('balance__value').innerHTML=total1;
+    document.getElementById('summary__value--in').innerHTML=in1;
+    document.getElementById('summary__value--out').innerHTML=out1;
+    document.getElementById('summary__value--interest').innerHTML=interestAmount;
+  
+  }
+  else{
+    document.querySelector('main').style.opacity='0%';
+  }
+
+ 
+}
+
+function loginCredential(userName,pass){
+
+for(let i=0;i<accounts.length;i++){
+  var id=accounts[i].owner.split(' ');
+  var pin=accounts[i].pin;
+  var first='';
+  for(let i=0;i<id.length;i++){
+    first=first.concat(id[i].slice(0,1).toLowerCase());
+  }
+  // console.log(first);
+  if(userName == first && pass==pin){
+
+    return i;
+  }
+}
+  return -1;
+}
+
+///close or remove account 
+function myClose(){
+  var conformName=document.getElementById('conform_user').value;
+  var conformPin1=document.getElementById('conform_pin').value;
+  var conformPin = Number(conformPin1);
+  var open2=loginCredential(conformName,conformPin);
+  if(open1 == open2){
+    accounts.splice(open1,1);
+    document.querySelector('main').style.opacity='0%';
+    // console.log(accounts);
+  }
+ 
+}
+
+///transfer money
+
+function transfer(){
+  var Name=document.getElementById('form__input--to').value;
+  var amount1=document.getElementById('form__input--amount').value;
+  var amount=Number(amount1);
+  var  total1=total(accounts[open1].movements);
+  var check=loginForTransfer(Name);
+  if(open1 != check && check > -1 && total1>=amount && amount >0){
+    var money=amount*(-1);
+    accounts[open1].movements.push(money);
+    accounts[check].movements.push(amount)
+    myFunction();
+  }
+}
+function loginForTransfer(userName){
+
+  for(let i=0;i<accounts.length;i++){
+    var id=accounts[i].owner.split(' ');
+    var pin=accounts[i].pin;
+    var first='';
+    for(let i=0;i<id.length;i++){
+      first=first.concat(id[i].slice(0,1).toLowerCase());
+    }
+    // console.log(first);
+    if(userName == first){
+  
+      return i;
+    }
+  }
+    return -1;
+  }
+
+  ///loan 
+  function some1(loan){
+    for(let i=0;i<accounts.length;i++){
+      var amount = accounts[open1].movements[i];
+      if(amount >= loan*0.1){
+        return amount
+      }
+    }
+    return loan*0.1-1;
+  }
+  function loan(){
+    // form__input--loan-amount
+    var loanAmout1=document.getElementById('form__input--loan-amount').value;
+    var loanAmout=Number(loanAmout1);
+    // console.log(typeof loanAmout, loanAmout)
+    if(loanAmout > 0 && some1(loanAmout)>=loanAmout*0.1){
+      accounts[open1].movements.push(loanAmout);
+      myFunction()
+    }
+
+  }
