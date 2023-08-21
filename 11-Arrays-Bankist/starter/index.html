@@ -38,8 +38,9 @@
         <button class="login__btn" type="submit">&rarr;</button>
       <!-- </div> -->
       </form>
+      <button id="logout" onclick="logout()">Logout</button>
     </nav>
-
+    
     <main class="app">
       <!-- BALANCE -->
       <div class="balance">
@@ -98,7 +99,7 @@
         <h2>Request loan</h2>
         <form class="form form--loan" id="loan">
           <!-- <div class="form form--loan"> -->
-          <input type="number" class="form__input form__input--loan-amount" id="form__input--loan-amount"/>
+          <input type="number" class="form__input form__input--loan-amount" id="form__input--loan-amount" min="1"/>
           <button class="form__btn form__btn--loan" type="submit">&rarr;</button>
           <label class="form__label form__label--loan">Amount</label>
         <!-- </div> -->

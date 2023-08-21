@@ -10,6 +10,12 @@
   box-sizing: inherit;
 }
 
+#logout{
+  display: none;
+  padding: .5em;
+  color:black;
+  background-color: #87f3ca;
+}
 html {
   font-size: 62.5%;
   box-sizing: border-box;
