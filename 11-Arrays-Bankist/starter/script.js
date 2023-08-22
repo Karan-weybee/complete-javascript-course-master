@@ -270,7 +270,15 @@ document.getElementById('myFunction').addEventListener('submit',function(e){
   user_pass=document.getElementById('login__input--pin').value;
   myFunction();
 })
+function logout(){
+  document.getElementById('logout').style.display='none';
+  document.getElementById('myFunction').style.display='block';
+  document.querySelector('main').style.opacity='0%';
+}
 function myFunction(){
+  
+  document.getElementById('myFunction').style.display='none';
+  document.getElementById('logout').style.display='block';
   // e.preventDefault();
   var userName=user_name;
   // console.log(userName)
@@ -294,6 +302,7 @@ function myFunction(){
   }
   else{
     document.querySelector('main').style.opacity='0%';
+    alert("invalid credential !!")
   }
 
  
@@ -329,6 +338,10 @@ document.getElementById('myClose').addEventListener('submit',function (e){
     document.querySelector('main').style.opacity='0%';
     // console.log(accounts);
   }
+  else {
+    alert("Invalid Username or Password");
+  }
+  
  
 }
 )
